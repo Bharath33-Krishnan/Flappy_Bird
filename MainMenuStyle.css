@@ -1,0 +1,116 @@
+.Main{
+    display: inline-block;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 30%;
+    left: 25%;
+    bottom: 0;
+    right: 0;
+}
+.MainMenu{
+    background-image: url(flappy-bird-assets/sprites/message.png);
+    width: 300px;
+    height: 100px;
+    margin: auto;
+    top: 15%;
+    background-size: 100% ;
+}
+body{
+    overflow: hidden;
+    background:url("flappy-bird-assets/sprites/background-day.png");
+    background-size:auto 100%;
+    
+}
+.MenuButtons{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+Button{
+    display:block;
+    font-family:sans-serif;
+    margin: auto;
+    width: 20%;
+    height: 10%;
+    font-weight: 200;
+    box-shadow: 0px 0px 5px gold;
+    background-color: orange;
+    border-radius: 4px;
+    border:0px;
+    
+}
+.Ground{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 65%;
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    top: 65%;
+    background:url(flappy-bird-assets/sprites/base.png);
+}
+.Settings{
+    
+}
+
+.ScoreBoard{
+    
+}
+
+.ViewPort{
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Hidden{
+    display: none;
+}
+
+.Pillar
+{
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width:5%;
+    height:100%; 
+    left: 105%;
+}
+
+.PillarD
+{
+    position: relative;
+    background:url(flappy-bird-assets/sprites/pipe-red.png);
+    background-size: 100% 100%;
+     transform:scaleY(1);
+    top: 35%;
+    height: 90%;
+}
+
+.PillarU{
+    position: relative;
+    background:url(flappy-bird-assets/sprites/pipe-red.png);
+    transform:scaleY(-1.1);
+    background-size: 100% 100%;
+    bottom: 10%; 
+    height: 45%;
+}
+
+.VolumeBar
+{
+    display: block;
+    margin: auto;
+}
+.Settings{
+    padding: 5px;
+    border-radius: 10px;
+}
+.VolText{
+    padding: 5px;
+    text-shadow:1px 1px 5px white,0px 0px 10px white;
+}

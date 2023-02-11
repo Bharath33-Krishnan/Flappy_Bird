@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link rel="stylesheet" href="MainMenuStyle.css">
+    <script src="noisejs/perlin.js"></script>
+    <script src="_MainMenu.js"></script>
+    <script src="logic.js"></script>
+    <link rel="prefetch" href="flappy-bird-assets/Sho-CardCapsNF.ttf">
+    
+</head >
+<body onload="Init()">
+    <div class="ViewPort">
+    <div class="Pillar" id="Pillar1">
+        <div class="PillarU" name="Upper"></div>
+        <div class="PillarD" name="Lower"></div>
+    </div>
+    <div class="Pillar" id="Pillar2">
+        <div class="PillarU" name="Upper"></div>
+        <div class="PillarD" name="Lower"></div>
+    </div>
+    <div class="Pillar" id="Pillar3">
+        <div class="PillarU" name="Upper"></div>
+        <div class="PillarD" name="Lower"></div>
+    </div>
+        
+    <div class="Main">
+        <div class="MainMenu">
+        </div>
+         <div class="MMButtons" id="MainMenu">  
+            <div class="MenuButtons" >
+                <button class="Button" onclick="StartButton()">START</button>
+            </div>
+            <div class="Setttings">
+                <button class="Button" onclick="Settings(this)">Settings</button>
+            </div>
+            <div class="ScoreBoard Hidden">
+            </div>
+        </div> 
+        <div class="Settings Hidden" id="Volume">
+            <center class="VolText">Volume</center><br>
+            <input type="range" value="25" max="50" min="1" id="VolumeBar" class="VolumeBar"><br>
+            <button onclick="MainMenu(this)">Back</button>
+        </div>
+    </div>
+    </div>
+    
+</body>
+
+</html>
