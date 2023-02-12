@@ -1,3 +1,9 @@
+const c_Pspeed=5;
+const c_gravity=3;
+var c_BNum=10;
+const c_Bdec=0.25;
+
+
 let Pillars=[];
 let Player;
 let FrameRate=60;
@@ -11,8 +17,8 @@ let BGM;
 let UInter=false;
 NoPressAudio=true;
 var Volume=0;
-BNum=10;
-Bdec=0.25;
+var BNum=10;
+var Bdec=0.25;
 const getFPS = () =>
   new Promise(resolve =>
     requestAnimationFrame(t1 =>
@@ -28,19 +34,7 @@ function Start()
     
     var y;
     
-    getFPS().then(function(x){
-        if(x>80){
-            BNum=10;
-        }
-        else{
-            BNum=7;
-        }
-        
-        Pspeed=(Pspeed/x)*144;
-        gravity=(gravity/x)*144;
-        BNum=(BNum/x)*144;
-        Bdec=(Bdec/x)*144;
-    });
+   
     
  
     Player=document.getElementById("Player");
@@ -61,6 +55,19 @@ function Start()
 
 function Update()
 {
+     getFPS().then(function(x){
+        if(x>80){
+            c_BNum=10;
+        }
+        else{
+            c_BNum=7;
+        }
+        
+        Pspeed=(c_Pspeed/x)*144;
+        gravity=(c_gravity/x)*144;
+        BNum=(c_BNum/x)*144;
+        Bdec=(c_Bdec/x)*144;
+    });
     
     //Collission(Pillar[0]);
     
@@ -87,7 +94,7 @@ function PlayBGM(){
         BGM.volume=Volume;
         
     }
-   // console.log(BGM.ended);
+    console.log(BGM.ended);
 }
 function UpdatePts(){
     if(UInter==false)
@@ -169,6 +176,18 @@ function DetectCollission(obj){
             return true;
             
         }
+        
+        if(obj.getAttribute("Pointed")==null || obj.getAttribute("Pointed")==0)
+        {
+            pts++;
+            if(NoPressAudio==false)
+            {
+                console.log("dsasdas");
+                PlayAudio('flappy-bird-assets/audio/point.wav');
+            }
+        }
+        
+        obj.setAttribute("Pointed",1);
     }
 
 }
@@ -195,11 +214,8 @@ function ReInitPillar(obj)
         obj.children[0].style.bottom=x+"%";
         obj.children[1].style.top=(40-x)+"%";
         t=0;
-        pts++;
-        if(NoPressAudio==false){
-            console.log("dsasdas");
-            PlayAudio('flappy-bird-assets/audio/point.wav');
-        }
+        obj.setAttribute("Pointed",0);
+        
     }
 }
 function MovePillar(){
@@ -210,8 +226,7 @@ function MovePillar(){
     }
 }
 
-
-
+/*
 function OpenXML(){
         alert("sasdas");
     var xhttp= new XMLHttpRequest();
@@ -230,4 +245,4 @@ function VolGet(xml)
     var name = xmlDoc.getElementsByTagName("Volume")[0];
     console.log(name.textContent);
     
-}
+}*/
