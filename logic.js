@@ -11,11 +11,38 @@ let BGM;
 let UInter=false;
 NoPressAudio=true;
 var Volume=0;
+BNum=10;
+Bdec=0.25;
+const getFPS = () =>
+  new Promise(resolve =>
+    requestAnimationFrame(t1 =>
+      requestAnimationFrame(t2 => resolve(1000 / (t2 - t1)))
+    )
+)
 function Start()
 {
+    
     NoPressAudio=false;
     Volume=sessionStorage.getItem("Volume");
     Px=0;
+    
+    var y;
+    
+    getFPS().then(function(x){
+        if(x>80){
+            BNum=10;
+        }
+        else{
+            BNum=7;
+        }
+        
+        Pspeed=(Pspeed/x)*144;
+        gravity=(gravity/x)*144;
+        BNum=(BNum/x)*144;
+        Bdec=(Bdec/x)*144;
+    });
+    
+ 
     Player=document.getElementById("Player");
     Player.style.bottom="1000px";
     Pillars[0]=document.getElementById("Pillar1");
@@ -93,7 +120,7 @@ function MovePlayer(){
     var _grav=gravity-boost;
     Player.style.bottom=(Py-_grav)+"px";
     //console.log(Py+boost);
-    boost-=0.25;
+    boost-=Bdec;
     boost=Math.max(0,boost);
     document.addEventListener('keydown',onkeypress);
     if(Py<-5 || Player.style.top<-5){
@@ -113,7 +140,7 @@ function onkeypress(event){
     if(event.keyCode==32 && boost<5){
         UInter=true;
         //console.log(boost);
-        boost+=10;
+        boost+=BNum;
         k=boost;
         PlayAudio('flappy-bird-assets/audio/wing.wav');
     }
