@@ -90,6 +90,8 @@ function PlayBGM(){
    // console.log(BGM.ended);
 }
 function UpdatePts(){
+    if(UInter==false)
+        return;
     var PT=document.getElementById("Points");
     if(PT==null)
         return;
