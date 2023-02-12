@@ -203,8 +203,8 @@ function Dead(){
 function ReInitPillar(obj)
 {
     const OP=obj.getBoundingClientRect();
-    //console.log(OP.name+t);
-    if(OP.right<0 && t>8)
+    console.log(OP.name+t);
+    if(OP.right<0 && t>15)
     {
         if(pts>=3)
             obj.style.left=(1500+Math.random()*2000)+"px";
