@@ -1,4 +1,4 @@
-const c_Pspeed=5;
+var c_Pspeed=5;
 const c_gravity=3;
 var c_BNum=10;
 const c_Bdec=0.25;
@@ -200,12 +200,14 @@ function Dead(){
     Player.classList.add("paused");
     BGM=new Audio('flappy-bird-assets/audio/die.wav')
 }
+var lastObj=null;
 function ReInitPillar(obj)
 {
     const OP=obj.getBoundingClientRect();
-    console.log(OP.name+t);
-    if(OP.right<0 && t>15)
+    
+    if(OP.right<0 && lastObj==null)
     {
+        console.log("I am Fine");
         if(pts>=3)
             obj.style.left=(1500+Math.random()*2000)+"px";
         else
@@ -215,7 +217,23 @@ function ReInitPillar(obj)
         obj.children[1].style.top=(40-x)+"%";
         t=0;
         obj.setAttribute("Pointed",0);
+        lastObj=OP;
         
+    }
+    else if(OP.right<0 && lastObj!=null){
+        if(lastObj.right-OP.left>=150)
+        {
+            obj.style.left=(1500+Math.random()*500)+"px";  
+            var x=(10+Math.random()*40);
+            obj.children[0].style.bottom=x+"%";
+            obj.children[1].style.top=(40-x)+"%";
+            t=0;
+            obj.setAttribute("Pointed",0);
+            lastObj=OP;
+            c_Pspeed=c_Pspeed+(pts/300);
+            console.log(c_Pspeed);
+            lastObj=OP;
+        }
     }
 }
 function MovePillar(){
